@@ -1,5 +1,11 @@
+import RowCard from "./components/RowCard";
+
 function App() {
-  return <h1>Addis</h1>;
+  return (
+    <div>
+      <RowCard />
+    </div>
+  );
 }
 
 export default App;
