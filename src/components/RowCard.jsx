@@ -15,6 +15,7 @@ const StyledRowCard = styled.div`
   height: 14rem;
   width: 75%;
   border: 1px solid #ddd;
+  margin-top: 3rem;
 `;
 
 const Container = styled.div`

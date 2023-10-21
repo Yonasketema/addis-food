@@ -1,11 +1,7 @@
-import RowCard from "./components/RowCard";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  return (
-    <div>
-      <RowCard />
-    </div>
-  );
+  return <Dashboard />;
 }
 
 export default App;
