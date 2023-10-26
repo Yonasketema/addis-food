@@ -23,13 +23,13 @@ const Container = styled.div`
   padding: 0.8rem;
 `;
 
-function RowCard() {
+function RowCard({ name }) {
   return (
     <StyledRowCard>
       <Image src="img-6.jpg" />
       <Container>
         <div>
-          <h1>Shiro</h1>
+          <h1>{name}</h1>
           <p>Shiro, karia, timatim</p>
         </div>
         <Row>
