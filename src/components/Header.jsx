@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Logo from "./Logo";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -7,12 +6,8 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid var(--color-grey-100);
 `;
 
-function Header() {
-  return (
-    <StyledHeader>
-      <Logo />
-    </StyledHeader>
-  );
+function Header({ children }) {
+  return <StyledHeader>{children}</StyledHeader>;
 }
 
 export default Header;
