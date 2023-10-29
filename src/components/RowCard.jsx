@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 
 function RowCard({ food }) {
-  const { name, price, _id } = food;
+  const { _id, name, price, description } = food;
   const queryClient = useQueryClient();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -51,7 +51,7 @@ function RowCard({ food }) {
       <Container>
         <div>
           <h1>{name}</h1>
-          <p>Shiro, karia, timatim</p>
+          <p>{description}</p>
         </div>
         <Row>
           <span>$ {price}</span>
@@ -66,7 +66,7 @@ function RowCard({ food }) {
               <Modal onClose={() => setIsOpenModal(false)}>
                 <CreateFoodForm
                   onCloseModal={() => setIsOpenModal(false)}
-                  editFood={food}
+                  food={food}
                 />
               </Modal>
             )}
