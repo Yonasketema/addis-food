@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const apiClient = axios.create({
+  withCredentials: true,
   baseURL: "http://localhost:8000/api/v1/",
 });
 
@@ -17,6 +18,7 @@ export async function createMenuFood(food) {
     name: food.name,
     price: food.regularPrice,
     description: food.description,
+    discountPrice: food.discountPrice,
     restaurant: "63b5847bc452ad2747bbbbcf",
   });
 }
@@ -26,6 +28,7 @@ export async function editMenuFood(newFood, id) {
     name: newFood.name,
     price: newFood.regularPrice,
     description: newFood.description,
+    discountPrice: newFood.discountPrice,
   });
 }
 
