@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import { useQuery } from "@tanstack/react-query";
 
-import Header from "../components/Header";
 import Heading from "../components/Heading";
 import Row from "../components/Row";
 import AddFood from "../components/AddFood";
 import ButtonGroup from "../components/ButtonGroup";
 import Button from "../components/Button";
-import RowCard from "../components/RowCard";
+import Menu from "../components/Menu";
 
 const Main = styled.main`
   display: flex;
@@ -19,17 +17,8 @@ const Main = styled.main`
 `;
 
 function Dashboard() {
-  const { data: menu } = useQuery({
-    queryKey: ["Menu"],
-    queryFn: () =>
-      fetch(
-        "http://localhost:8000/api/v1/food/restaurantfoods?restaurant=63b670347f5d4be30274c830"
-      ).then((res) => res.json()),
-  });
-
   return (
     <>
-      <Header />
       <Main>
         <Title>
           <h1>Habesha hotel</h1>
@@ -45,9 +34,7 @@ function Dashboard() {
           <Heading as="h1">Menu</Heading>
           <AddFood />
         </Row>
-        {menu?.foods.map((food) => (
-          <RowCard name={food.name} />
-        ))}
+        <Menu />
       </Main>
     </>
   );

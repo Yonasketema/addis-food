@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+import Row from "./Row";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -6,8 +9,69 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid var(--color-grey-100);
 `;
 
-function Header({ children }) {
-  return <StyledHeader>{children}</StyledHeader>;
+const StyledLink = styled(Link)`
+  &:link,
+  &:visited {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+
+    color: var(--color-grey-50);
+    background-color: var(--color-yellow-700);
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1.2rem 2.4rem;
+    transition: all 0.3s;
+  }
+
+  &:hover,
+  &:active,
+  &.active:link,
+  &.active:visited {
+    color: var(--color-grey-800);
+    background-color: var(--color-yellow-100);
+    border-radius: var(--border-radius-sm);
+  }
+
+  & svg {
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--color-grey-400);
+    transition: all 0.3s;
+  }
+
+  &:hover svg,
+  &:active svg,
+  &.active:link svg,
+  &.active:visited svg {
+    color: var(--color-brand-600);
+  }
+`;
+
+function Header() {
+  return (
+    <StyledHeader>
+      <Row>
+        <Link to="/">
+          <h3>Addis Foods </h3>
+        </Link>
+
+        {false ? (
+          <StyledLink to="/dashboard">My Menu</StyledLink>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+            }}
+          >
+            <StyledLink to="/signup">Get started</StyledLink>
+            <StyledLink to="/login">Login</StyledLink>
+          </div>
+        )}
+      </Row>
+    </StyledHeader>
+  );
 }
 
 export default Header;

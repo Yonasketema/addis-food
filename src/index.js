@@ -6,7 +6,6 @@ import { Toaster } from "react-hot-toast";
 
 import "./index.css";
 import App from "./App";
-import GlobalStyles from "./styles/GlobalStyles";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,7 +19,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <GlobalStyles />
       <App />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
