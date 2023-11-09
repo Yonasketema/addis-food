@@ -100,12 +100,12 @@ function CreateFoodForm({ onCloseModal, food = {} }) {
       </FormRow>
 
       <FormRow>
-        <Label htmlFor="discount">Discount</Label>
+        <Label htmlFor="discountPrice"> Discount Price</Label>
         <Input
           type="number"
-          id="discount"
+          id="discountPrice"
           defaultValue={0}
-          {...register("discount")}
+          {...register("discountPrice")}
         />
       </FormRow>
 
