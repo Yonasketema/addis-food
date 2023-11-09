@@ -13,7 +13,6 @@ export default function Menu() {
 
   return (
     <>
-      {" "}
       {menu?.foods.map((food) => (
         <RowCard food={food} key={food._id} />
       ))}
