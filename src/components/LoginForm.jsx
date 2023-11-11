@@ -4,17 +4,34 @@ import Input from "./Input";
 import FormRowVertical from "./FormRowVertical";
 import Button from "./Button";
 import Form from "./Form";
-import { login } from "../apis/authApi";
+
+import { useLogin } from "../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
+import SpinnerMini from "./SpinnerMini";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("123@123.");
 
+  const { login, isPending } = useLogin();
+  const navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) return;
 
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+        onSuccess: (user) => {
+          navigate("/dashboard");
+        },
+      }
+    );
   }
 
   return (
@@ -41,11 +58,8 @@ function LoginForm() {
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button
-          size="large"
-          // disabled={ }
-        >
-          Log in
+        <Button size="large" disabled={isPending}>
+          {!isPending ? "Log in" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
     </Form>
