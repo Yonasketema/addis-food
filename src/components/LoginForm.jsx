@@ -11,7 +11,7 @@ import SpinnerMini from "./SpinnerMini";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("123@123.");
+  const [password, setPassword] = useState("");
 
   const { login, isPending } = useLogin();
   const navigate = useNavigate();
