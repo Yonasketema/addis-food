@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import Row from "./Row";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentUser } from "../apis/authApi";
+import { deleteLocalStorage } from "../utils/LocalSorage";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -49,6 +52,11 @@ const StyledLink = styled(Link)`
 `;
 
 function Header() {
+  const { data: currentUser } = useQuery({
+    queryKey: ["user"],
+    queryFn: getCurrentUser,
+  });
+
   return (
     <StyledHeader>
       <Row>
@@ -56,8 +64,19 @@ function Header() {
           <h3>Addis Foods </h3>
         </Link>
 
-        {false ? (
-          <StyledLink to="/dashboard">My Menu</StyledLink>
+        {currentUser ? (
+          <div
+            style={{
+              display: "flex",
+              gap: "1rem",
+            }}
+          >
+            <StyledLink to="/dashboard">My Menu</StyledLink>
+            <StyledLink to="/create">Create Menu</StyledLink>
+            <StyledLink onClick={() => deleteLocalStorage("addis-auth-token")}>
+              Log out
+            </StyledLink>
+          </div>
         ) : (
           <div
             style={{
