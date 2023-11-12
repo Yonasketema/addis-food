@@ -4,22 +4,41 @@ import FormRow from "./FormRow";
 import Input from "./Input";
 import Button from "./Button";
 
+import { useNavigate } from "react-router-dom";
+import { useSignup } from "../hooks/useSignup";
+import SpinnerMini from "./SpinnerMini";
+
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
   const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
+  const { signup, isPending } = useSignup();
+
   const { errors } = formState;
 
-  function onSubmit({ fullName, email, password }) {}
+  function onSubmit({ name, email, password, passwordConfirm }) {
+    signup(
+      { name, email, password, passwordConfirm },
+      {
+        onSettled: () => {
+          reset();
+        },
+        onSuccess: (user) => {
+          navigate("/dashboard");
+        },
+      }
+    );
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label="Full name" error={errors?.fullName?.message}>
+      <FormRow label="Full name" error={errors?.name?.message}>
         <Input
           type="text"
-          id="fullName"
-          // disabled={isLoading}
-          {...register("fullName", { required: "This field is required" })}
+          id="name"
+          disabled={isPending}
+          {...register("name", { required: "This field is required" })}
         />
       </FormRow>
 
@@ -27,7 +46,7 @@ function SignupForm() {
         <Input
           type="email"
           id="email"
-          // disabled={isLoading}
+          disabled={isPending}
           {...register("email", {
             required: "This field is required",
             pattern: {
@@ -45,7 +64,7 @@ function SignupForm() {
         <Input
           type="password"
           id="password"
-          // disabled={isLoading}
+          disabled={isPending}
           {...register("password", {
             required: "This field is required",
             minLength: {
@@ -56,11 +75,14 @@ function SignupForm() {
         />
       </FormRow>
 
-      <FormRow label="Repeat password" error={errors?.passwordConfirm?.message}>
+      <FormRow
+        label="password Confirm"
+        error={errors?.passwordConfirm?.message}
+      >
         <Input
           type="password"
           id="passwordConfirm"
-          // disabled={isLoading}
+          disabled={isPending}
           {...register("passwordConfirm", {
             required: "This field is required",
             validate: (value) =>
@@ -70,19 +92,16 @@ function SignupForm() {
       </FormRow>
 
       <FormRow>
-        {/* type is an HTML attribute! */}
         <Button
-          variation="secondary"
-          type="reset"
-          // disabled={isLoading}
-          onClick={reset}
+          disabled={isPending}
+          style={{
+            width: "80%",
+            textAlign: "center",
+            margin: "0 auto",
+            fontSize: "1.7rem",
+          }}
         >
-          Cancel
-        </Button>
-        <Button
-        // disabled={isLoading}
-        >
-          Create new user
+          {!isPending ? "Sign up" : <SpinnerMini />}
         </Button>
       </FormRow>
     </Form>

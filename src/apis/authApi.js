@@ -20,19 +20,30 @@ export async function login({ email, password }) {
   return data;
 }
 
+export async function signup({ name, email, password, passwordConfirm }) {
+  console.log({ name, email, password, passwordConfirm });
+  const { data } = await apiClient.post("/users/signup/", {
+    name,
+    email,
+    password,
+    passwordConfirm,
+  });
+
+  if (!data) throw new Error("signup Error");
+
+  setLocalStorage(localStorageKey, data);
+
+  return data;
+}
+
 export async function getCurrentUser() {
   const session = getLocalStorage(localStorageKey);
 
   if (!session.session) return null;
 
-  console.log({ token: session.session.token });
-
   const { data } = await apiClient.get("/users/me", {
     headers: { Authorization: `Bearer ${session.session.token}` },
   });
 
-  console.log("userrrrrr", { data });
-
-  console.table(data);
   return data;
 }
