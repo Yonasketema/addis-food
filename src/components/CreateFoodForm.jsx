@@ -9,6 +9,7 @@ import Button from "./Button";
 import FileInput from "./FileInput";
 import Textarea from "./Textarea";
 import { createMenuFood, editMenuFood } from "../apis/foodApi";
+import { useRestaurant } from "../hooks/useRestaurant";
 
 const FormRow = styled.div`
   display: grid;
@@ -46,11 +47,14 @@ const Error = styled.span`
 `;
 
 function CreateFoodForm({ onCloseModal, food = {} }) {
-  const { _id: editId, name, price, description } = food;
+  const { _id: editId, name, price, description, discountPrice } = food;
+  const { userRestaurant } = useRestaurant();
   const isEditForm = Boolean(editId);
   const queryClient = useQueryClient();
   const { register, handleSubmit, reset } = useForm({
-    defaultValues: isEditForm ? { name, regularPrice: price, description } : {},
+    defaultValues: isEditForm
+      ? { name, regularPrice: price, description, discountPrice }
+      : {},
   });
 
   const { mutate: createFood } = useMutation({
@@ -83,9 +87,8 @@ function CreateFoodForm({ onCloseModal, food = {} }) {
   });
 
   function onSubmit(data) {
-    console.log({ newFood: data, id: editId });
     if (isEditForm) editFood({ newFood: data, id: editId });
-    else createFood(data);
+    else createFood({ ...data, restaurant_id: userRestaurant?.restaurant.id });
   }
   return (
     <Form type="modal" onSubmit={handleSubmit(onSubmit)}>
@@ -104,7 +107,6 @@ function CreateFoodForm({ onCloseModal, food = {} }) {
         <Input
           type="number"
           id="discountPrice"
-          defaultValue={0}
           {...register("discountPrice")}
         />
       </FormRow>

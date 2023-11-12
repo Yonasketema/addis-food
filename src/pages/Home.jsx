@@ -2,7 +2,6 @@ import React from "react";
 
 import FoodCard from "../components/FoodCard";
 import { useQuery } from "@tanstack/react-query";
-import { getCurrentUser } from "../apis/authApi";
 
 function Home() {
   const { data: foods } = useQuery({
@@ -25,10 +24,10 @@ function Home() {
       >
         {foods?.foods.map((food) => (
           <FoodCard
-            key={food._id}
+            key={food.menu._id}
             price={food.menu.price}
             name={food.menu.name}
-            owner={food.name}
+            owner={food.restaurantName}
             description={food.menu.description}
             rate={4.6}
             discountPrice={food.menu.discountPrice}

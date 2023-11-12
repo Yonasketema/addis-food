@@ -6,6 +6,7 @@ import AddFood from "../components/AddFood";
 import ButtonGroup from "../components/ButtonGroup";
 import Button from "../components/Button";
 import Menu from "../components/Menu";
+import { useRestaurant } from "../hooks/useRestaurant";
 
 const Main = styled.main`
   display: flex;
@@ -17,15 +18,14 @@ const Main = styled.main`
 `;
 
 function Dashboard() {
+  const { userRestaurant } = useRestaurant();
+
   return (
     <>
       <Main>
         <Title>
-          <h1>Habesha hotel</h1>
-          <p>
-            Thanks for taking the time to contribute! Contributions make the
-            open-source community a fantastic place to learn ...
-          </p>
+          <h1>{userRestaurant?.restaurant?.restaurantName}</h1>
+          <p>{userRestaurant?.restaurant?.description}</p>
           <ButtonGroup>
             <Button>Edit</Button>
           </ButtonGroup>
@@ -34,7 +34,9 @@ function Dashboard() {
           <Heading as="h1">Menu</Heading>
           <AddFood />
         </Row>
-        <Menu />
+        {userRestaurant?.restaurant?.id && (
+          <Menu restaurant_id={userRestaurant?.restaurant?.id} />
+        )}
       </Main>
     </>
   );

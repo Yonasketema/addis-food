@@ -30,6 +30,7 @@ const Container = styled.div`
 
 function RowCard({ food }) {
   const { _id, name, price, description } = food;
+  console.log(food);
   const queryClient = useQueryClient();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
