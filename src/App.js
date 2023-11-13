@@ -8,6 +8,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Create from "./pages/Create";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="create" element={<Create />} />
+          <Route path="how-it-work" element={<About />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="*" element={<PageNotFound />} />
