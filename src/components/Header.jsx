@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Row from "./Row";
 import { useQuery } from "@tanstack/react-query";
@@ -12,17 +12,13 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid var(--color-grey-100);
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   &:link,
   &:visited {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-
-    color: var(--color-grey-50);
-    background-color: var(--color-yellow-700);
+    text-transform: uppercase;
+    color: var(--color-grey-500);
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 600;
     padding: 1.2rem 2.4rem;
     transition: all 0.3s;
   }
@@ -31,23 +27,7 @@ const StyledLink = styled(Link)`
   &:active,
   &.active:link,
   &.active:visited {
-    color: var(--color-grey-800);
-    background-color: var(--color-yellow-100);
-    border-radius: var(--border-radius-sm);
-  }
-
-  & svg {
-    width: 2.4rem;
-    height: 2.4rem;
-    color: var(--color-grey-400);
-    transition: all 0.3s;
-  }
-
-  &:hover svg,
-  &:active svg,
-  &.active:link svg,
-  &.active:visited svg {
-    color: var(--color-brand-600);
+    color: yellowgreen;
   }
 `;
 
@@ -56,6 +36,8 @@ function Header() {
     queryKey: ["user"],
     queryFn: getCurrentUser,
   });
+
+  const navigate = useNavigate();
 
   return (
     <StyledHeader>
@@ -69,11 +51,24 @@ function Header() {
             style={{
               display: "flex",
               gap: "1rem",
+              alignItems: "center",
             }}
           >
-            <StyledLink to="/dashboard">My Menu</StyledLink>
-            <StyledLink to="/create">Create Menu</StyledLink>
-            <StyledLink onClick={() => deleteLocalStorage("addis-auth-token")}>
+            {currentUser.role === "admin" ? (
+              <>
+                <StyledLink to="/dashboard">My Menu</StyledLink>
+              </>
+            ) : (
+              <StyledLink to="/create">Create Menu</StyledLink>
+            )}
+
+            <StyledLink
+              to=".."
+              onClick={() => {
+                navigate("/");
+                deleteLocalStorage("addis-auth-token");
+              }}
+            >
               Log out
             </StyledLink>
           </div>
@@ -81,11 +76,23 @@ function Header() {
           <div
             style={{
               display: "flex",
+              alignItems: "center",
               gap: "1rem",
             }}
           >
+            <StyledLink to="/how-it-work">How it Work</StyledLink>
             <StyledLink to="/signup">Get started</StyledLink>
             <StyledLink to="/login">Login</StyledLink>
+            <p>
+              Already have an account?{" "}
+              <u
+                style={{
+                  color: "greenyellow",
+                }}
+              >
+                Login
+              </u>
+            </p>
           </div>
         )}
       </Row>
