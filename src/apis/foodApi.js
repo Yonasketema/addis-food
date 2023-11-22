@@ -1,9 +1,11 @@
 import apiClient from "./api-client";
 
-const foodUrl = "/food/restaurantfoods?restaurant=63b5847bc452ad2747bbbbcf";
+export async function getMenu(restaurant_id) {
+  const { data } = await apiClient.get(
+    `/food/restaurantfoods?restaurant=${restaurant_id}`
+  );
 
-export async function getMenu() {
-  return await apiClient.get(foodUrl);
+  return data;
 }
 
 export async function createMenuFood(food) {

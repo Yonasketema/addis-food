@@ -1,14 +1,13 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+
 import RowCard from "./RowCard";
+import { getMenu } from "../apis/foodApi";
 
 export default function Menu({ restaurant_id }) {
   const { data: menu } = useQuery({
     queryKey: ["Menu"],
-    queryFn: () =>
-      fetch(
-        `http://localhost:8000/api/v1/food/restaurantfoods?restaurant=${restaurant_id}`
-      ).then((res) => res.json()),
+    queryFn: () => getMenu(restaurant_id),
   });
 
   return (
