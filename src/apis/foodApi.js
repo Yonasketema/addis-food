@@ -1,8 +1,4 @@
-import axios from "axios";
-
-export const apiClient = axios.create({
-  baseURL: "http://localhost:8000/api/v1/",
-});
+import apiClient from "./api-client";
 
 const foodUrl = "/food/restaurantfoods?restaurant=63b5847bc452ad2747bbbbcf";
 
@@ -11,7 +7,6 @@ export async function getMenu() {
 }
 
 export async function createMenuFood(food) {
-  console.log({ food });
   return await apiClient.post("/food", {
     image:
       "https://static.wixstatic.com/media/fa00aa_aa33952ed1b940d983e93cf464e942c8~mv2.jpg/v1/fill/w_640,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/fa00aa_aa33952ed1b940d983e93cf464e942c8~mv2.jpg",

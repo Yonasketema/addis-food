@@ -3,7 +3,7 @@
 //getCurrentUser()
 
 import { getLocalStorage, setLocalStorage } from "../utils/LocalSorage";
-import { apiClient } from "./foodApi";
+import apiClient from "./api-client";
 
 const localStorageKey = "addis-auth-token";
 
