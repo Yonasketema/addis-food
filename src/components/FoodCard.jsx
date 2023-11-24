@@ -56,7 +56,7 @@ function FoodCard({ name, price, discountPrice, owner, description, rate }) {
             marginBottom: ".7rem",
           }}
         >
-          {description}
+          &bull; {description}
         </p>
 
         <div
@@ -74,6 +74,14 @@ function FoodCard({ name, price, discountPrice, owner, description, rate }) {
           >
             <StarRating size={20} />
             <h4>{rate}</h4>
+            <p
+              style={{
+                fontWeight: "lighter",
+                color: "var( --color-grey-400)",
+              }}
+            >
+              (200 reviews)
+            </p>
           </div>
           <div
             style={{
