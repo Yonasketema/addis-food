@@ -2,6 +2,8 @@ import React from "react";
 
 import FoodCard from "../components/FoodCard";
 import { useQuery } from "@tanstack/react-query";
+import Header from "../components/Header";
+import { getCurrentUser } from "../apis/authApi";
 
 function Home() {
   const { data: foods } = useQuery({
@@ -12,8 +14,18 @@ function Home() {
       ).then((res) => res.json()),
   });
 
+  const { data: currentUser, isLoading } = useQuery({
+    queryKey: ["user"],
+    queryFn: getCurrentUser,
+  });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
+      <Header user={currentUser} />
       <main
         style={{
           overflow: "scroll",

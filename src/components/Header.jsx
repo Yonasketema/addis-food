@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Row from "./Row";
-import { useQuery } from "@tanstack/react-query";
-import { getCurrentUser } from "../apis/authApi";
+
 import { deleteLocalStorage } from "../utils/LocalSorage";
 
 const StyledHeader = styled.header`
@@ -31,12 +30,7 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-function Header() {
-  const { data: currentUser } = useQuery({
-    queryKey: ["user"],
-    queryFn: getCurrentUser,
-  });
-
+function Header({ user }) {
   const navigate = useNavigate();
 
   return (
@@ -46,7 +40,7 @@ function Header() {
           <h3>Addis Foods </h3>
         </Link>
 
-        {currentUser ? (
+        {user ? (
           <div
             style={{
               display: "flex",
@@ -54,7 +48,7 @@ function Header() {
               alignItems: "center",
             }}
           >
-            {currentUser.role === "admin" ? (
+            {user.role === "admin" ? (
               <>
                 <StyledLink to="/dashboard">My Menu</StyledLink>
               </>

@@ -16,7 +16,6 @@ function App() {
       <GlobalStyles />
 
       <BrowserRouter>
-        <Header />
         <Routes>
           <Route index element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
