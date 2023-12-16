@@ -11,6 +11,10 @@ const StyledFoodCard = styled.div`
   background-color: var(--color-grey-00);
   border: 1px solid #eee;
   margin: 0.1rem;
+
+  &:hover {
+    background-color: var(--color-grey-50);
+  }
 `;
 
 const Container = styled.div`
@@ -36,7 +40,7 @@ const ReviewText = styled.p`
 const PriceContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: calc() 0.7rem;
+  gap: 0.7rem;
 `;
 
 const DiscountPriceBox = styled.div`
