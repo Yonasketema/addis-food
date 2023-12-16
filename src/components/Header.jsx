@@ -1,14 +1,17 @@
 import styled from "styled-components";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Row from "./Row";
 
-import { deleteLocalStorage } from "../utils/LocalSorage";
+import { useQuery } from "@tanstack/react-query";
+import { getCurrentUser } from "../apis/authApi";
+import LogoutButton from "./LogoutButton";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
   padding: 1.2rem 4.8rem;
   border-bottom: 1px solid var(--color-grey-100);
+  height: 13vh;
 `;
 
 const StyledLink = styled(NavLink)`
@@ -30,8 +33,11 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-function Header({ user }) {
-  const navigate = useNavigate();
+function Header() {
+  const { data: user } = useQuery({
+    queryKey: ["user"],
+    queryFn: getCurrentUser,
+  });
 
   return (
     <StyledHeader>
@@ -41,7 +47,7 @@ function Header({ user }) {
         </Link>
 
         {user ? (
-          <div
+          <nav
             style={{
               display: "flex",
               gap: "1rem",
@@ -56,18 +62,10 @@ function Header({ user }) {
               <StyledLink to="/create">Create Menu</StyledLink>
             )}
 
-            <StyledLink
-              to=".."
-              onClick={() => {
-                navigate("/");
-                deleteLocalStorage("addis-auth-token");
-              }}
-            >
-              Log out
-            </StyledLink>
-          </div>
+            {user.role === "user" && <LogoutButton />}
+          </nav>
         ) : (
-          <div
+          <nav
             style={{
               display: "flex",
               alignItems: "center",
@@ -87,7 +85,7 @@ function Header({ user }) {
                 Login
               </u>
             </p>
-          </div>
+          </nav>
         )}
       </Row>
     </StyledHeader>
