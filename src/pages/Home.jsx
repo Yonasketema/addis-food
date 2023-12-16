@@ -14,18 +14,12 @@ function Home() {
       ).then((res) => res.json()),
   });
 
-  const { data: currentUser, isLoading } = useQuery({
-    queryKey: ["user"],
-    queryFn: getCurrentUser,
-  });
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
   return (
     <>
-      <Header user={currentUser} />
       <main
         style={{
           overflow: "scroll",

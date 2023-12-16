@@ -18,9 +18,8 @@ const StyledRowCard = styled.div`
   display: flex;
   gap: 0.8rem;
   height: 14rem;
-  width: 75%;
   border: 1px solid #ddd;
-  margin-top: 3rem;
+  margin-top: 0.7rem;
 `;
 
 const Container = styled.div`
@@ -30,7 +29,7 @@ const Container = styled.div`
 
 function RowCard({ food }) {
   const { _id, name, price, description } = food;
-  console.log(food);
+
   const queryClient = useQueryClient();
 
   const [isOpenModal, setIsOpenModal] = useState(false);

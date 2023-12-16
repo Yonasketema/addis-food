@@ -8,13 +8,12 @@ import Button from "../components/Button";
 import Menu from "../components/Menu";
 import { useRestaurant } from "../hooks/useRestaurant";
 
-const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 3rem;
-  padding: 0 12rem;
+const Title = styled.div`
+  padding: 2.4rem 4rem;
+  background-color: var(--color-grey-0);
+  border: 1px solid var(--color-grey-100);
+  border-radius: var(--border-radius-md);
+  margin-bottom: 1.2rem;
 `;
 
 function Dashboard() {
@@ -22,7 +21,7 @@ function Dashboard() {
 
   return (
     <>
-      <Main>
+      <Row>
         <Title>
           <h1>{userRestaurant?.restaurant?.restaurantName}</h1>
           <p>{userRestaurant?.restaurant?.description}</p>
@@ -30,26 +29,25 @@ function Dashboard() {
             <Button>Edit</Button>
           </ButtonGroup>
         </Title>
-        <Row>
-          <Heading as="h1">Menu</Heading>
-          <AddFood />
-        </Row>
-        {userRestaurant?.restaurant?.id && (
-          <Menu restaurant_id={userRestaurant?.restaurant?.id} />
-        )}
-      </Main>
+        <div
+          style={{
+            width: "50%",
+            height: "20vh",
+            border: "1px solid #444",
+          }}
+        >
+          map
+        </div>
+      </Row>
+      <Row>
+        <Heading as="h1">Menu</Heading>
+        <AddFood />
+      </Row>
+      {userRestaurant?.restaurant?.id && (
+        <Menu restaurant_id={userRestaurant?.restaurant?.id} />
+      )}
     </>
   );
 }
-
-const Title = styled.div`
-  padding: 2.4rem 4rem;
-
-  /* Box */
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
-  margin-bottom: 3rem;
-`;
 
 export default Dashboard;
