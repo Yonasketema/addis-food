@@ -18,7 +18,7 @@ const Sidebar = styled.aside`
 
 const Main = styled.main`
   background-color: var(--color-grey-50);
-  padding: 4rem 4.8rem 6.4rem;
+  padding: 2.7rem 3.4rem 9rem;
   height: 87vh;
   overflow: auto;
 `;

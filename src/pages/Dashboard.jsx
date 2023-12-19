@@ -22,13 +22,30 @@ function Dashboard() {
   return (
     <>
       <Row>
-        <Title>
-          <h1>{userRestaurant?.restaurant?.restaurantName}</h1>
-          <p>{userRestaurant?.restaurant?.description}</p>
-          <ButtonGroup>
-            <Button>Edit</Button>
-          </ButtonGroup>
-        </Title>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "1rem",
+            gap: "1rem",
+            backgroundColor: "#fff",
+            padding: "1rem 1.2rem",
+          }}
+        >
+          <img
+            src="cabin-007.jpg"
+            alt=""
+            style={{
+              width: "27rem",
+            }}
+          />
+          <div>
+            <h1>{userRestaurant?.restaurant?.restaurantName}</h1>
+            <p>
+              {userRestaurant?.restaurant?.description ||
+                "Historia Regis Sarsa Dengel Malak Sagad. Accedit Historia Gentis Galla, Curante Guidi"}
+            </p>
+          </div>
+        </div>
         <div
           style={{
             width: "50%",

@@ -65,7 +65,7 @@ const StatusContainer = styled.div`
 `;
 const StatusBox = styled.div`
   display: flex;
-  gap: 0, 5rem;
+  gap: 0.5rem;
 `;
 
 function FoodCard({ name, price, discountPrice, owner, description, rate }) {

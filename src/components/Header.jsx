@@ -47,7 +47,7 @@ function Header() {
         </Link>
 
         {user ? (
-          <nav
+          <header
             style={{
               display: "flex",
               gap: "1rem",
@@ -63,9 +63,9 @@ function Header() {
             )}
 
             {user.role === "user" && <LogoutButton />}
-          </nav>
+          </header>
         ) : (
-          <nav
+          <header
             style={{
               display: "flex",
               alignItems: "center",
@@ -85,7 +85,7 @@ function Header() {
                 Login
               </u>
             </p>
-          </nav>
+          </header>
         )}
       </Row>
     </StyledHeader>

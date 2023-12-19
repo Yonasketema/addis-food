@@ -27,8 +27,12 @@ function LoginForm() {
           setEmail("");
           setPassword("");
         },
-        onSuccess: (user) => {
-          navigate("/dashboard");
+        onSuccess: ({ user }) => {
+          if (user.role === "admin") {
+            navigate("/dashboard");
+          } else {
+            navigate("/");
+          }
         },
       }
     );
