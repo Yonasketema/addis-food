@@ -1,9 +1,14 @@
 import React from "react";
-
-import FoodCard from "../components/FoodCard";
+import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import Header from "../components/Header";
-import { getCurrentUser } from "../apis/authApi";
+
+import HomeMap from "../components/HomeMap";
+import FoodList from "../components/FoodList";
+
+const Main = styled.main`
+  display: flex;
+  height: 87vh;
+`;
 
 function Home() {
   const { data: foods } = useQuery({
@@ -19,28 +24,10 @@ function Home() {
   // }
 
   return (
-    <>
-      <main
-        style={{
-          overflow: "scroll",
-          overflowX: "hidden",
-          height: "87vh",
-          width: "50vw",
-        }}
-      >
-        {foods?.foods.map((food) => (
-          <FoodCard
-            key={food.menu._id}
-            price={food.menu.price}
-            name={food.menu.name}
-            owner={food.restaurantName}
-            description={food.menu.description}
-            rate={4.6}
-            discountPrice={food.menu.discountPrice}
-          />
-        ))}
-      </main>
-    </>
+    <Main>
+      <FoodList foods={foods} />
+      <HomeMap foods={foods} />
+    </Main>
   );
 }
 
