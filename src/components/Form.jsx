@@ -17,6 +17,18 @@ const Form = styled.form`
     css`
       width: 80rem;
     `}
+     ${(props) =>
+    props.type === "vertical" &&
+    css`
+      display: flex;
+      flex-direction: column;
+      width: 80rem;
+
+      gap: 1.2rem;
+      justify-content: stretch;
+      align-content: stretch;
+    `}
+     
     
   overflow: hidden;
   font-size: 1.4rem;
