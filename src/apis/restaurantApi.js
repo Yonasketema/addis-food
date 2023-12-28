@@ -15,14 +15,7 @@ export async function getCurrentUserRestaurant() {
   return data;
 }
 
-export async function createRestaurant({
-  restaurantName,
-  image,
-  logo,
-  log,
-  lat,
-  description,
-}) {
+export async function createRestaurant(newData) {
   const session = getLocalStorage(localStorageKey);
 
   if (!session.session) return null;
@@ -30,12 +23,12 @@ export async function createRestaurant({
   const { data } = await apiClient.post(
     "restaurant/",
     {
-      restaurantName,
+      restaurantName: newData.restaurant_name,
       image: "http://img.com",
       logo: "http://img.com",
-      log,
-      lat,
-      description,
+      log: newData.lng,
+      lat: newData.lat,
+      description: newData.description,
     },
     {
       headers: { Authorization: `Bearer ${session.session.token}` },
