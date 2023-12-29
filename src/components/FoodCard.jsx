@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import StarRating from "./StarRating";
 import Heading from "./Heading";
+import Modal from "./Modal";
 
 const StyledFoodCard = styled.div`
   display: flex;
@@ -69,36 +70,50 @@ const StatusBox = styled.div`
 `;
 
 function FoodCard({ name, price, discountPrice, owner, description, rate }) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   return (
-    <StyledFoodCard>
-      <Image src="img-6.jpg" alt="" />
-      <Container>
-        <Heading as="h3">{name}</Heading>
-        <P>{owner}</P>
-        <P>&bull; {description}</P>
+    <>
+      {isOpenModal && (
+        <Modal onClose={() => setIsOpenModal(false)}>
+          <div>
+            {name} {owner}
+          </div>
+        </Modal>
+      )}
 
-        <StatusContainer>
-          <StatusBox>
-            <StarRating size={20} />
-            <Heading as="h4">{rate}</Heading>
-            <ReviewText>(200 reviews)</ReviewText>
-          </StatusBox>
-          <PriceContainer>
-            {discountPrice && (
-              <DiscountPriceBox>
-                <Heading as="h4">{price}</Heading>
+      <StyledFoodCard
+        onClick={() => setIsOpenModal((show) => setIsOpenModal(!show))}
+      >
+        <Image src="img-6.jpg" alt="" />
+        <Container>
+          <Heading as="h3">{name}</Heading>
+          <P>{owner}</P>
+          <P>&bull; {description}</P>
+
+          <StatusContainer>
+            <StatusBox>
+              <StarRating size={20} />
+              <Heading as="h4">{rate}</Heading>
+              <ReviewText>(200 reviews)</ReviewText>
+            </StatusBox>
+            <PriceContainer>
+              {discountPrice && (
+                <DiscountPriceBox>
+                  <Heading as="h4">{price}</Heading>
+                  <small>Birr</small>
+                </DiscountPriceBox>
+              )}
+
+              <PriceBox>
+                <Heading as="h4">{discountPrice || price}</Heading>
                 <small>Birr</small>
-              </DiscountPriceBox>
-            )}
-
-            <PriceBox>
-              <Heading as="h4">{discountPrice || price}</Heading>
-              <small>Birr</small>
-            </PriceBox>
-          </PriceContainer>
-        </StatusContainer>
-      </Container>
-    </StyledFoodCard>
+              </PriceBox>
+            </PriceContainer>
+          </StatusContainer>
+        </Container>
+      </StyledFoodCard>
+    </>
   );
 }
 
