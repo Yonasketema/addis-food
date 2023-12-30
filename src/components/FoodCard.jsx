@@ -69,16 +69,14 @@ const StatusBox = styled.div`
   gap: 0.5rem;
 `;
 
-function FoodCard({ name, price, discountPrice, owner, description, rate }) {
+function FoodCard({ food }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <>
       {isOpenModal && (
         <Modal onClose={() => setIsOpenModal(false)}>
-          <div>
-            {name} {owner}
-          </div>
+          <div>{food.restaurantName}</div>
         </Modal>
       )}
 
@@ -87,26 +85,28 @@ function FoodCard({ name, price, discountPrice, owner, description, rate }) {
       >
         <Image src="img-6.jpg" alt="" />
         <Container>
-          <Heading as="h3">{name}</Heading>
-          <P>{owner}</P>
-          <P>&bull; {description}</P>
+          <Heading as="h3"> {food.menu.name}</Heading>
+          <P>{food.restaurantName}</P>
+          <P>&bull; {food.menu.description}</P>
 
           <StatusContainer>
             <StatusBox>
               <StarRating size={20} />
-              <Heading as="h4">{rate}</Heading>
+              <Heading as="h4">{food.menu.rate || 4.6}</Heading>
               <ReviewText>(200 reviews)</ReviewText>
             </StatusBox>
             <PriceContainer>
-              {discountPrice && (
+              {food.menu.discountPrice && (
                 <DiscountPriceBox>
-                  <Heading as="h4">{price}</Heading>
+                  <Heading as="h4">{food.menu.price}</Heading>
                   <small>Birr</small>
                 </DiscountPriceBox>
               )}
 
               <PriceBox>
-                <Heading as="h4">{discountPrice || price}</Heading>
+                <Heading as="h4">
+                  {food.menu.discountPrice || food.menu.price}
+                </Heading>
                 <small>Birr</small>
               </PriceBox>
             </PriceContainer>

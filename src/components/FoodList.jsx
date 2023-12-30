@@ -13,15 +13,7 @@ function FoodList({ foods }) {
   return (
     <StyledFoodList>
       {foods?.foods.map((food) => (
-        <FoodCard
-          key={food.menu._id}
-          price={food.menu.price}
-          name={food.menu.name}
-          owner={food.restaurantName}
-          description={food.menu.description}
-          rate={4.6}
-          discountPrice={food.menu.discountPrice}
-        />
+        <FoodCard key={food.menu._id} food={food} />
       ))}
     </StyledFoodList>
   );
