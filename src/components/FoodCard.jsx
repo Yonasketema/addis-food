@@ -92,9 +92,11 @@ function FoodCard({ food }) {
 
           <StatusContainer>
             <StatusBox>
-              <StarRating size={20} />
-              <Heading as="h4">{food.menu.rate || 4.6}</Heading>
-              <ReviewText>(200 reviews)</ReviewText>
+              <StarRating size={20} defaultRating={food.menu.rating} />
+              <Heading as="h4">{food.menu.rating}</Heading>
+              <ReviewText>
+                ({food.menu.reviews?.length || 0} reviews)
+              </ReviewText>
             </StatusBox>
             <PriceContainer>
               {food.menu.discountPrice && (

@@ -6,6 +6,7 @@ import Heading from "./Heading";
 import Row from "./Row";
 import CreateFoodReviewForm from "./CreateFoodReviewForm";
 import PriceContainer from "./PriceContainer";
+import Review from "./Review";
 
 const StyledFoodDetailBox = styled.div`
   display: grid;
@@ -29,8 +30,6 @@ const StatusContainer = styled.div`
   gap: 0.5rem;
 `;
 const ReviewContainer = styled.div`
-  flex: 1;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -59,7 +58,7 @@ function FoodDetailBox({ food }) {
         <Row>
           <Heading as="h1">{food.menu.name}</Heading>
           <StatusContainer>
-            <HiStar color="#fcc419" size={21} /> <p>4.7</p>
+            <HiStar color="#fcc419" size={21} /> <p>{food.menu.rating || 0}</p>
           </StatusContainer>
         </Row>
         <PlaceName>
@@ -77,7 +76,22 @@ function FoodDetailBox({ food }) {
       </div>
 
       <ReviewContainer>
-        <div>No review yet</div>
+        <div>
+          {food.menu.reviews?.length ? (
+            <>
+              {food.menu.reviews.map((review) => (
+                <Review
+                  key={review._id}
+                  name={review.name}
+                  rate={review.rating}
+                  comment={review.comment}
+                />
+              ))}
+            </>
+          ) : (
+            <p>No comment !!</p>
+          )}
+        </div>
         <CreateFoodReviewForm food_id={food.menu._id} />
       </ReviewContainer>
     </StyledFoodDetailBox>
