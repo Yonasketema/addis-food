@@ -4,7 +4,7 @@ import { HiStar } from "react-icons/hi2";
 
 import Heading from "./Heading";
 import Row from "./Row";
-import PostReviewForm from "./PostReviewForm";
+import CreateFoodReviewForm from "./CreateFoodReviewForm";
 import PriceContainer from "./PriceContainer";
 
 const StyledFoodDetailBox = styled.div`
@@ -78,7 +78,7 @@ function FoodDetailBox({ food }) {
 
       <ReviewContainer>
         <div>No review yet</div>
-        <PostReviewForm />
+        <CreateFoodReviewForm food_id={food.menu._id} />
       </ReviewContainer>
     </StyledFoodDetailBox>
   );

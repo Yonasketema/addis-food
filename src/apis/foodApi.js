@@ -1,4 +1,6 @@
+import { getLocalStorage } from "../utils/LocalSorage";
 import apiClient from "./api-client";
+const localStorageKey = "addis-auth-token";
 
 export async function getMenu(restaurant_id) {
   const { data } = await apiClient.get(
@@ -31,4 +33,23 @@ export async function editMenuFood(newFood, id) {
 
 export async function deleteFood(id) {
   return await apiClient.delete(`/food/${id}`);
+}
+
+export async function createFoodReview({ food_id, rating, comment }) {
+  const session = getLocalStorage(localStorageKey);
+
+  console.log({ food_id, rating, comment });
+
+  if (!session.session) return null;
+
+  return await apiClient.post(
+    `/food/${food_id}/reviews`,
+    {
+      rating,
+      comment,
+    },
+    {
+      headers: { Authorization: `Bearer ${session.session.token}` },
+    }
+  );
 }
