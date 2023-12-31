@@ -4,6 +4,7 @@ import styled from "styled-components";
 import StarRating from "./StarRating";
 import Heading from "./Heading";
 import Modal from "./Modal";
+import FoodDetailBox from "./FoodDetailBox";
 
 const StyledFoodCard = styled.div`
   display: flex;
@@ -76,7 +77,7 @@ function FoodCard({ food }) {
     <>
       {isOpenModal && (
         <Modal onClose={() => setIsOpenModal(false)}>
-          <div>{food.restaurantName}</div>
+          <FoodDetailBox food={food} />
         </Modal>
       )}
 
