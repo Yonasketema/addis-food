@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Button from "../Button";
-import { LOCATION_FORM, STEP_BACK } from "../../pages/Create";
-
-import FormRow from "../FormRow";
-import Input from "../Input";
-import Form from "../Form";
-
+import { Icon } from "leaflet";
 import {
   MapContainer,
   Marker,
@@ -13,9 +7,14 @@ import {
   TileLayer,
   useMapEvents,
 } from "react-leaflet";
-import { Icon } from "leaflet";
+
+import FormRow from "../FormRow";
+import Input from "../Input";
+import Form from "../Form";
+import Button from "../Button";
 import Textarea from "../Textarea";
 import { useGeolocation } from "../../hooks/useGeolocation";
+import { LOCATION_FORM, STEP_BACK } from "../../pages/Create";
 
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
@@ -30,7 +29,7 @@ function CreateLocationForm({ state, dispatch }) {
   );
   const [city, setCity] = useState(state.city || "");
   const [lng, setLng] = useState(state.lng || 0);
-  const [lat, setLat] = useState(state.lng || 0);
+  const [lat, setLat] = useState(state.lat || 0);
 
   const { isLoading: isLoadingPosition, position: userPosition } =
     useGeolocation();
