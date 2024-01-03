@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import StarRating from "./StarRating";
+import Rating from "./Rating";
 
 const H6 = styled.h6`
   font-weight: 600;
@@ -18,7 +18,8 @@ const ReviewText = styled.p`
 function Review({ name, rate, comment }) {
   return (
     <div>
-      <StarRating size={16} defaultRating={rate} />
+      <Rating size={16} value={rate} />
+
       <H6>{name}</H6>
       <ReviewText>{comment}</ReviewText>
     </div>

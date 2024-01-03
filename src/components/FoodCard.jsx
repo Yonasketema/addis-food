@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import StarRating from "./StarRating";
 import Heading from "./Heading";
 import Modal from "./Modal";
 import FoodDetailBox from "./FoodDetailBox";
+import Rating from "./Rating";
 
 const StyledFoodCard = styled.div`
   display: flex;
@@ -92,7 +92,7 @@ function FoodCard({ food }) {
 
           <StatusContainer>
             <StatusBox>
-              <StarRating size={20} defaultRating={food.menu.rating} />
+              <Rating size={21} value={food.menu.rating} />
               <Heading as="h4">{food.menu.rating}</Heading>
               <ReviewText>
                 ({food.menu.reviews?.length || 0} reviews)
