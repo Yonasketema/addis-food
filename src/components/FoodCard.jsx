@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import Heading from "./Heading";
-import Modal from "./Modal";
+import Heading from "./ui/Heading";
+import Modal from "./ui/Modal";
 import FoodDetailBox from "./FoodDetailBox";
 import Rating from "./Rating";
 

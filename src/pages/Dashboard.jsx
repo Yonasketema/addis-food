@@ -1,24 +1,12 @@
-import styled from "styled-components";
-
-import Heading from "../components/Heading";
-import Row from "../components/Row";
-import AddFood from "../components/AddFood";
-import ButtonGroup from "../components/ButtonGroup";
-import Button from "../components/Button";
-import Menu from "../components/Menu";
-import { useRestaurant } from "../hooks/useRestaurant";
+import { useState, useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
-import { useState } from "react";
-import { useEffect } from "react";
 
-const Title = styled.div`
-  padding: 2.4rem 4rem;
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
-  margin-bottom: 1.2rem;
-`;
+import Heading from "../components/ui/Heading";
+import Row from "../components/ui/Row";
+import AddFood from "../components/AddFood";
+import Menu from "../components/Menu";
+import { useRestaurant } from "../hooks/useRestaurant";
 
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",

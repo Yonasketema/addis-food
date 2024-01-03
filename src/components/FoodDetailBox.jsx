@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { HiStar } from "react-icons/hi2";
 
-import Heading from "./Heading";
-import Row from "./Row";
+import Heading from "./ui/Heading";
+import Row from "./ui/Row";
 import CreateFoodReviewForm from "./CreateFoodReviewForm";
 import PriceContainer from "./PriceContainer";
 import Review from "./Review";

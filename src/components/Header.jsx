@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
-import Row from "./Row";
-
+import Row from "./ui/Row";
 import { useQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "../apis/authApi";
 import LogoutButton from "./LogoutButton";

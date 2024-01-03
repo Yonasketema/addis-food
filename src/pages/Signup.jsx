@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Heading from "../components/ui/Heading";
 import SignupForm from "../components/SignupForm";
-import Heading from "../components/Heading";
 
 const SignupLayout = styled.main`
   display: grid;

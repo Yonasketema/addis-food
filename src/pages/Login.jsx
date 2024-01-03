@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Heading from "../components/Heading";
+import Heading from "../components/ui/Heading";
 import LoginForm from "../components/LoginForm";
 
 const LoginLayout = styled.main`

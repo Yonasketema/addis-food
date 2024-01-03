@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import Modal from "./Modal";
+import Button from "./ui/Button";
+import Modal from "./ui/Modal";
 import CreateFoodForm from "./CreateFoodForm";
 
 function AddFood() {

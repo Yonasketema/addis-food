@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Row from "./Row";
-import ButtonGroup from "./ButtonGroup";
-import Button from "./Button";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteFood } from "../apis/foodApi";
 import toast from "react-hot-toast";
-import Modal from "./Modal";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import Row from "./ui/Row";
+import ButtonGroup from "./ui/ButtonGroup";
+import Button from "./ui/Button";
+import Modal from "./ui/Modal";
 import CreateFoodForm from "./CreateFoodForm";
+import { deleteFood } from "../apis/foodApi";
 
 const Image = styled.img`
   width: auto;

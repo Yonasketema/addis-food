@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Button from "../Button";
-import { ADD_STEP, NAME_FROM, STEP_BACK } from "../../pages/Create";
 
-import FormRow from "../FormRow";
-import Input from "../Input";
-import Textarea from "../Textarea";
-import Form from "../Form";
+import Button from "../ui/Button";
+import FormRow from "../ui/FormRow";
+import Input from "../ui/Input";
+import Textarea from "../ui/Textarea";
+import Form from "../ui/Form";
+import { NAME_FROM } from "../../pages/Create";
 
 function CreateNameForm({ dispatch, state }) {
   const [restaurant_name, setRestaurantName] = useState(

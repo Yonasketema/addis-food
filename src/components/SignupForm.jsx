@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useSignup } from "../hooks/useSignup";
 
-import SpinnerMini from "./SpinnerMini";
-import Form from "./Form";
-import FormRow from "./FormRow";
-import Input from "./Input";
-import Button from "./Button";
+import Form from "./ui/Form";
+import FormRow from "./ui/FormRow";
+import Input from "./ui/Input";
+import Button from "./ui/Button";
+import SpinnerMini from "./ui/SpinnerMini";
+import { useSignup } from "../hooks/useSignup";
 
 // Email regex: /\S+@\S+\.\S+/
 

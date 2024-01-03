@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { MdDelete, MdCloudUpload } from "react-icons/md";
 import { AiFillFileImage } from "react-icons/ai";
 
-import Button from "../Button";
-import FormRow from "../FormRow";
+import Button from "../ui/Button";
+import FormRow from "../ui/FormRow";
+import Spinner from "../ui/Spinner";
 import { STEP_BACK, PROFILE_FORM } from "../../pages/Create";
 import { useCreatePlace } from "../../hooks/useCreatePlace";
-import Spinner from "../Spinner";
-import Heading from "../Heading";
 
 const Form = styled.form`
   padding: 1rem;

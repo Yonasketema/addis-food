@@ -1,11 +1,9 @@
 import React, { useReducer } from "react";
 import styled from "styled-components";
 
-import CreatePlaceForm from "../components/CreatePlaceForm";
 import CreateNameForm from "../components/CreatePlaceForms/CreateNameForm";
 import CreateLocationForm from "../components/CreatePlaceForms/CreateLocationForm";
 import CreateProfileForm from "../components/CreatePlaceForms/CreateProfileForm";
-import Form from "../components/Form";
 import ProgressBar from "../components/ProgressBar";
 
 const CreateLayout = styled.main`

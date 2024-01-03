@@ -1,13 +1,12 @@
 import { useState } from "react";
-
-import Input from "./Input";
-import FormRowVertical from "./FormRowVertical";
-import Button from "./Button";
-import Form from "./Form";
-
-import { useLogin } from "../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
-import SpinnerMini from "./SpinnerMini";
+
+import Input from "./ui/Input";
+import FormRowVertical from "./ui/FormRowVertical";
+import Button from "./ui/Button";
+import Form from "./ui/Form";
+import SpinnerMini from "./ui/SpinnerMini";
+import { useLogin } from "../hooks/useLogin";
 
 function LoginForm() {
   const [email, setEmail] = useState("");

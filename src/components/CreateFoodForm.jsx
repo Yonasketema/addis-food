@@ -3,11 +3,11 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import Input from "./Input";
-import Form from "./Form";
-import Button from "./Button";
-import FileInput from "./FileInput";
-import Textarea from "./Textarea";
+import Input from "./ui/Input";
+import Form from "./ui/Form";
+import Button from "./ui/Button";
+import FileInput from "./ui/FileInput";
+import Textarea from "./ui/Textarea";
 import { createMenuFood, editMenuFood } from "../apis/foodApi";
 import { useRestaurant } from "../hooks/useRestaurant";
 
@@ -87,8 +87,15 @@ function CreateFoodForm({ onCloseModal, food = {} }) {
   });
 
   function onSubmit(data) {
+    const image = typeof data.image === "string" ? data.image : data.image[0];
+
     if (isEditForm) editFood({ newFood: data, id: editId });
-    else createFood({ ...data, restaurant_id: userRestaurant?.restaurant.id });
+    else
+      createFood({
+        ...data,
+        restaurant_id: userRestaurant?.restaurant.id,
+        image,
+      });
   }
   return (
     <Form type="modal" onSubmit={handleSubmit(onSubmit)}>
@@ -121,9 +128,15 @@ function CreateFoodForm({ onCloseModal, food = {} }) {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow label="Food image">
         <Label htmlFor="image">Food photo</Label>
-        <FileInput id="image" accept="image/*" />
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image", {
+            required: isEditForm ? false : "This field is required",
+          })}
+        />
       </FormRow>
 
       <FormRow>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StarRating from "./StarRating";
-import Row from "./Row";
-import Input from "./Input";
+import Row from "./ui/Row";
+import Input from "./ui/Input";
 import { useCreateFoodReview } from "../hooks/useCreateFoodReview";
 
 function PostReviewForm({ food_id }) {

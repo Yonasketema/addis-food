@@ -8,11 +8,11 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-import FormRow from "../FormRow";
-import Input from "../Input";
-import Form from "../Form";
-import Button from "../Button";
-import Textarea from "../Textarea";
+import FormRow from "../ui/FormRow";
+import Input from "../ui/Input";
+import Form from "../ui/Form";
+import Button from "../ui/Button";
+import Textarea from "../ui/Textarea";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import { LOCATION_FORM, STEP_BACK } from "../../pages/Create";
 
