@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { HiStar } from "react-icons/hi2";
 
@@ -7,6 +7,7 @@ import Row from "./ui/Row";
 import CreateFoodReviewForm from "./CreateFoodReviewForm";
 import PriceContainer from "./PriceContainer";
 import Review from "./Review";
+import PlaceMenu from "./PlaceMenu";
 
 const StyledFoodDetailBox = styled.div`
   display: grid;
@@ -52,6 +53,12 @@ const PlaceName = styled.p`
 `;
 
 function FoodDetailBox({ food }) {
+  const [selectedId, setSelectedId] = useState(null);
+
+  function handleClose() {
+    setSelectedId(null);
+  }
+
   return (
     <StyledFoodDetailBox>
       <div>
@@ -62,7 +69,10 @@ function FoodDetailBox({ food }) {
           </StatusContainer>
         </Row>
         <PlaceName>
-          By<span>{food.restaurantName}</span>
+          By
+          <span onClick={() => setSelectedId(food._id)}>
+            {food.restaurantName}
+          </span>
         </PlaceName>
 
         <Image src="img-6.jpg" alt="" />
@@ -75,25 +85,29 @@ function FoodDetailBox({ food }) {
         <FoodDescription>{food.menu.description}</FoodDescription>
       </div>
 
-      <ReviewContainer>
-        <div>
-          {food.menu.reviews?.length ? (
-            <>
-              {food.menu.reviews.map((review) => (
-                <Review
-                  key={review._id}
-                  name={review.name}
-                  rate={review.rating}
-                  comment={review.comment}
-                />
-              ))}
-            </>
-          ) : (
-            <p>No comment !!</p>
-          )}
-        </div>
-        <CreateFoodReviewForm food_id={food.menu._id} />
-      </ReviewContainer>
+      {selectedId ? (
+        <PlaceMenu onClose={handleClose} />
+      ) : (
+        <ReviewContainer>
+          <div>
+            {food.menu.reviews?.length ? (
+              <>
+                {food.menu.reviews.map((review) => (
+                  <Review
+                    key={review._id}
+                    name={review.name}
+                    rate={review.rating}
+                    comment={review.comment}
+                  />
+                ))}
+              </>
+            ) : (
+              <p>No comment !!</p>
+            )}
+          </div>
+          <CreateFoodReviewForm food_id={food.menu._id} />
+        </ReviewContainer>
+      )}
     </StyledFoodDetailBox>
   );
 }
