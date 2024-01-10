@@ -86,7 +86,7 @@ function FoodDetailBox({ food }) {
       </div>
 
       {selectedId ? (
-        <PlaceMenu onClose={handleClose} />
+        <PlaceMenu onClose={handleClose} selectedId={selectedId} />
       ) : (
         <ReviewContainer>
           <div>
