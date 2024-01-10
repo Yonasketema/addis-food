@@ -59,10 +59,10 @@ function PlaceMenu({ onClose, selectedId }) {
                 <span>Birr</span>
               </p>
               <p>
+                <span>⭐️</span>
                 <span>
                   {food.rating} ({food.numReviews}reviews)
                 </span>
-                <span>⭐️</span>
               </p>
             </InfoBox>
           </List>
