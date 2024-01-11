@@ -9,6 +9,7 @@ import Button from "./ui/Button";
 import Modal from "./ui/Modal";
 import CreateFoodForm from "./CreateFoodForm";
 import { deleteFood } from "../apis/foodApi";
+import PriceContainer from "./PriceContainer";
 
 const Image = styled.img`
   width: auto;
@@ -29,7 +30,7 @@ const Container = styled.div`
 `;
 
 function RowCard({ food }) {
-  const { _id, name, price, description } = food;
+  const { _id, name, price, discountPrice, description } = food;
 
   const queryClient = useQueryClient();
 
@@ -55,8 +56,7 @@ function RowCard({ food }) {
           <p>{description}</p>
         </div>
         <Row>
-          <span>$ {price}</span>
-
+          <PriceContainer price={price} discountPrice={discountPrice} />
           <ButtonGroup>
             <Button
               onClick={() => setIsOpenModal((show) => setIsOpenModal(!show))}
