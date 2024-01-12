@@ -93,7 +93,7 @@ function FoodCard({ food }) {
           <StatusContainer>
             <StatusBox>
               <Rating size={21} value={food.menu.rating} />
-              <Heading as="h4">{food.menu.rating}</Heading>
+              <Heading as="h4">{food.menu.rating.toFixed(1)}</Heading>
               <ReviewText>
                 ({food.menu.reviews?.length || 0} reviews)
               </ReviewText>
