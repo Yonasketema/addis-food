@@ -21,7 +21,6 @@ export async function login({ email, password }) {
 }
 
 export async function signup({ name, email, password, passwordConfirm }) {
-  console.log({ name, email, password, passwordConfirm });
   const { data } = await apiClient.post("/users/signup/", {
     name,
     email,
