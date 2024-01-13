@@ -65,7 +65,8 @@ function FoodDetailBox({ food }) {
         <Row>
           <Heading as="h1">{food.menu.name}</Heading>
           <StatusContainer>
-            <HiStar color="#fcc419" size={21} /> <p>{food.menu.rating || 0}</p>
+            <HiStar color="#fcc419" size={21} />{" "}
+            <p>{food.menu.rating.toFixed(1) || 0}</p>
           </StatusContainer>
         </Row>
         <PlaceName>
