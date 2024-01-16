@@ -3,9 +3,7 @@ import apiClient from "./api-client";
 const localStorageKey = "addis-auth-token";
 
 export async function getMenu(restaurant_id) {
-  const { data } = await apiClient.get(
-    `/food/restaurantfoods?restaurant=${restaurant_id}`
-  );
+  const { data } = await apiClient.get(`/restaurant/${restaurant_id}/foods`);
 
   return data;
 }
