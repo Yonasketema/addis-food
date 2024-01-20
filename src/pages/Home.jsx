@@ -15,7 +15,7 @@ function Home() {
     queryKey: ["near-foods"],
     queryFn: () =>
       fetch(
-        "http://localhost:8000/api/v1/food/nearby?lat=39.51955439923884&log=9.667288506425242"
+        "http://localhost:8000/api/v1/foods/nearby?lat=39.51955439923884&log=9.667288506425242"
       ).then((res) => res.json()),
   });
 

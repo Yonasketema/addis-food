@@ -8,7 +8,7 @@ export async function getCurrentUserRestaurant() {
 
   if (!session.session) return null;
 
-  const { data } = await apiClient.get("restaurant/user", {
+  const { data } = await apiClient.get("restaurants/user", {
     headers: { Authorization: `Bearer ${session.session.token}` },
   });
 
@@ -21,7 +21,7 @@ export async function createRestaurant(newData) {
   if (!session.session) return null;
 
   const { data } = await apiClient.post(
-    "restaurant/",
+    "restaurants/",
     {
       restaurantName: newData.restaurant_name,
       image: "http://img.com",
