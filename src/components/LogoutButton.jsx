@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../components/ui/Button";
-import { deleteLocalStorage } from "../utils/LocalSorage";
+import { deleteLocalStorage } from "../lib/LocalSorage";
 
 function LogoutButton() {
   const navigate = useNavigate();

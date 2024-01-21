@@ -2,8 +2,8 @@
 //signup
 //getCurrentUser()
 
-import { getLocalStorage, setLocalStorage } from "../utils/LocalSorage";
 import apiClient from "./api-client";
+import { getLocalStorage, setLocalStorage } from "../lib/LocalSorage";
 
 const localStorageKey = "addis-auth-token";
 
