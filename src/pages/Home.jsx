@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import HomeMap from "../components/HomeMap";
 import FoodList from "../components/FoodList";
+import FoodCardSkeleton from "../components/FoodCardSkeleton";
 
 const Main = styled.main`
   display: flex;
@@ -11,7 +12,7 @@ const Main = styled.main`
 `;
 
 function Home() {
-  const { data: foods } = useQuery({
+  const { data: foods, isLoading } = useQuery({
     queryKey: ["near-foods"],
     queryFn: () =>
       fetch(
@@ -19,13 +20,9 @@ function Home() {
       ).then((res) => res.json()),
   });
 
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
-
   return (
     <Main>
-      <FoodList foods={foods} />
+      <FoodList foods={foods} isLoading={isLoading} />
       <HomeMap foods={foods} />
     </Main>
   );
