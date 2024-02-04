@@ -1,7 +1,5 @@
 import apiClient from "./api-client";
-import { getLocalStorage } from "../lib/LocalSorage";
-
-const localStorageKey = "addis-auth-token";
+import { getLocalStorage, localStorageKey } from "../lib/LocalSorage";
 
 export async function getCurrentUserRestaurant() {
   const session = getLocalStorage(localStorageKey);

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../components/ui/Button";
-import { deleteLocalStorage } from "../lib/LocalSorage";
+import { deleteLocalStorage, localStorageKey } from "../lib/LocalSorage";
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ function LogoutButton() {
     <Button
       onClick={() => {
         navigate("/");
-        deleteLocalStorage("addis-auth-token");
+        deleteLocalStorage(localStorageKey);
       }}
     >
       Log out

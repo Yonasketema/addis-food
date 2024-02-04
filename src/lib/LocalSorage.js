@@ -1,3 +1,5 @@
+export const localStorageKey = "addis-auth-token";
+
 export function getLocalStorage(key) {
   const storedValue = localStorage.getItem(key);
   return storedValue ? JSON.parse(storedValue) : null;

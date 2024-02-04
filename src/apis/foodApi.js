@@ -1,7 +1,5 @@
 import apiClient from "./api-client";
-import { getLocalStorage } from "../lib/LocalSorage";
-
-const localStorageKey = "addis-auth-token";
+import { getLocalStorage, localStorageKey } from "../lib/LocalSorage";
 
 export async function getMenu(restaurant_id) {
   const { data } = await apiClient.get(`/restaurants/${restaurant_id}/foods`);

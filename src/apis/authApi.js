@@ -3,9 +3,11 @@
 //getCurrentUser()
 
 import apiClient from "./api-client";
-import { getLocalStorage, setLocalStorage } from "../lib/LocalSorage";
-
-const localStorageKey = "addis-auth-token";
+import {
+  getLocalStorage,
+  localStorageKey,
+  setLocalStorage,
+} from "../lib/LocalSorage";
 
 export async function login({ email, password }) {
   const { data } = await apiClient.post("/users/login", {
