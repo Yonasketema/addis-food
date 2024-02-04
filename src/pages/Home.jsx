@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 
 import HomeMap from "../components/HomeMap";
 import FoodList from "../components/FoodList";
-import FoodCardSkeleton from "../components/FoodCardSkeleton";
 
 const Main = styled.main`
   display: flex;

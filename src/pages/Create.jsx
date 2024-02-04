@@ -74,8 +74,6 @@ function Create() {
     <>
       <ProgressBar step={state.step} numberOfStep={3} />
       <CreateLayout>
-        {/* <CreatePlaceForm /> */}
-
         {state.step === 1 && (
           <CreateNameForm state={state} dispatch={dispatch} />
         )}
