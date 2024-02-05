@@ -3,6 +3,7 @@ import StarRating from "./StarRating";
 import Row from "./ui/Row";
 import Input from "./ui/Input";
 import { useCreateFoodReview } from "../hooks/useCreateFoodReview";
+import Button from "./ui/Button";
 
 function PostReviewForm({ food_id }) {
   const [comment, setComment] = useState("");
@@ -16,9 +17,15 @@ function PostReviewForm({ food_id }) {
   return (
     <div>
       <StarRating size={24} onSetRating={(r) => setRating(r)} />
-      <Row>
-        <Input value={comment} onChange={(e) => setComment(e.target.value)} />
-        <button onClick={handleCreateReview}>post</button>
+      <Row style={{ alignItems: "baseline" }}>
+        <Input
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          style={{ width: "100%", marginTop: "1rem" }}
+        />
+        <Button onClick={handleCreateReview} disabled={isCreating}>
+          Post
+        </Button>
       </Row>
     </div>
   );
