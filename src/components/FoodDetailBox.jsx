@@ -87,7 +87,11 @@ function FoodDetailBox({ food }) {
       </div>
 
       {selectedId ? (
-        <PlaceMenu onClose={handleClose} selectedId={selectedId} />
+        <PlaceMenu
+          onClose={handleClose}
+          PlaceName={food.restaurantName}
+          selectedId={selectedId}
+        />
       ) : (
         <ReviewContainer>
           <div>
