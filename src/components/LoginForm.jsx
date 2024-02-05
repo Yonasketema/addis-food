@@ -22,11 +22,10 @@ function LoginForm() {
     login(
       { email, password },
       {
-        onSettled: () => {
+        // onSettled: () => {},
+        onSuccess: ({ user }) => {
           setEmail("");
           setPassword("");
-        },
-        onSuccess: ({ user }) => {
           if (user.role === "admin") {
             navigate("/dashboard");
           } else {

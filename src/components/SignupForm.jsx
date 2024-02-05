@@ -21,11 +21,9 @@ function SignupForm() {
     signup(
       { name, email, password, passwordConfirm },
       {
-        onSettled: () => {
-          reset();
-        },
-        onSuccess: (user) => {
+        onSuccess: () => {
           navigate("/");
+          reset();
         },
       }
     );
