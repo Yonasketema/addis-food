@@ -6,8 +6,8 @@ import Heading from "./ui/Heading";
 import Row from "./ui/Row";
 import CreateFoodReviewForm from "./CreateFoodReviewForm";
 import PriceContainer from "./PriceContainer";
-import Review from "./Review";
 import PlaceMenu from "./PlaceMenu";
+import FoodReviewList from "./FoodReviewList";
 
 const StyledFoodDetailBox = styled.div`
   display: grid;
@@ -94,22 +94,7 @@ function FoodDetailBox({ food }) {
         />
       ) : (
         <ReviewContainer>
-          <div>
-            {food.menu.reviews?.length ? (
-              <>
-                {food.menu.reviews.map((review) => (
-                  <Review
-                    key={review._id}
-                    name={review.name}
-                    rate={review.rating}
-                    comment={review.comment}
-                  />
-                ))}
-              </>
-            ) : (
-              <p>No comment !!</p>
-            )}
-          </div>
+          <FoodReviewList reviews={food.menu?.reviews} />
           <CreateFoodReviewForm food_id={food.menu._id} />
         </ReviewContainer>
       )}
