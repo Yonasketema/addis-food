@@ -16,6 +16,9 @@ export function useSignup() {
       queryClient.setQueryData(["user"], user.user);
       toast.success("Account successfully created!");
     },
+    onError: (err) => {
+      toast.error(err.response.data.message);
+    },
   });
 
   return { signup, isPending, isIdle };
