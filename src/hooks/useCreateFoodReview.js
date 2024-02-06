@@ -14,7 +14,7 @@ export function useCreateFoodReview() {
         queryKey: ["near-foods"],
       });
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) => toast.error(err.response.data.message),
   });
 
   return { isCreating, createReview };
