@@ -1,24 +1,24 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
 import GlobalStyles from "./styles/GlobalStyles";
-import Header from "./components/Header";
+
 import Signup from "./pages/Signup";
 import Create from "./pages/Create";
 
 import About from "./pages/About";
 import DashboardLayout from "./components/DashboardLayout";
+import AppLayout from "./components/AppLayout";
 
 function App() {
   return (
     <>
       <GlobalStyles />
 
-      <BrowserRouter>
-        <Header />
+      <AppLayout>
         <Routes>
           <Route index element={<Home />} />
           <Route element={<DashboardLayout />}>
@@ -31,7 +31,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </BrowserRouter>
+      </AppLayout>
     </>
   );
 }

@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
 import Row from "./ui/Row";
-import { useQuery } from "@tanstack/react-query";
-import { getCurrentUser } from "../apis/authApi";
 import LogoutButton from "./LogoutButton";
+import { useUser } from "../hooks/useUser";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -32,12 +31,7 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-function Header() {
-  const { data: user } = useQuery({
-    queryKey: ["user"],
-    queryFn: getCurrentUser,
-  });
-
+function Header({ user }) {
   return (
     <StyledHeader>
       <Row>
