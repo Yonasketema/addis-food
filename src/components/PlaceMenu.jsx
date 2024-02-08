@@ -9,7 +9,7 @@ import { HiArrowLongLeft } from "react-icons/hi2";
 const ListContainer = styled.ul`
   list-style: none;
   padding: 0.8rem 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 80%;
 `;
 

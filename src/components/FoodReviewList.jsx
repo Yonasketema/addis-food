@@ -5,7 +5,13 @@ function FoodReviewList({ reviews }) {
   return (
     <div>
       {reviews?.length ? (
-        <>
+        <ul
+          style={{
+            overflow: "auto",
+            overflowX: "hidden",
+            height: "30rem",
+          }}
+        >
           {reviews.map((review) => (
             <Review
               key={review._id}
@@ -14,7 +20,7 @@ function FoodReviewList({ reviews }) {
               comment={review.comment}
             />
           ))}
-        </>
+        </ul>
       ) : (
         <p>No comment !!</p>
       )}
