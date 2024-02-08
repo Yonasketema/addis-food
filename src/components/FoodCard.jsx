@@ -24,8 +24,15 @@ const Container = styled.div`
 `;
 
 const Image = styled.img`
-  height: 14rem;
-  border-radius: 7px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+`;
+const ImageContainer = styled.div`
+  width: 31rem;
+  height: 15rem;
 `;
 
 const P = styled.p`
@@ -84,7 +91,9 @@ function FoodCard({ food }) {
       <StyledFoodCard
         onClick={() => setIsOpenModal((show) => setIsOpenModal(!show))}
       >
-        <Image src="img-6.jpg" alt="" />
+        <ImageContainer>
+          <Image src={food.menu.image} alt="" />
+        </ImageContainer>
         <Container>
           <Heading as="h3"> {food.menu.name}</Heading>
           <P>{food.restaurantName}</P>

@@ -12,14 +12,15 @@ import { deleteFood } from "../apis/foodApi";
 import PriceContainer from "./PriceContainer";
 
 const Image = styled.img`
-  width: auto;
+  width: 45%;
   height: inherit;
+  object-fit: cover;
 `;
 
 const StyledRowCard = styled.div`
   display: flex;
   gap: 0.8rem;
-  height: 14rem;
+  height: 17rem;
   border: 1px solid #ddd;
   margin-top: 0.7rem;
 `;
@@ -30,7 +31,7 @@ const Container = styled.div`
 `;
 
 function RowCard({ food }) {
-  const { _id, name, price, discountPrice, description } = food;
+  const { _id, name, price, discountPrice, description, image } = food;
 
   const queryClient = useQueryClient();
 
@@ -49,7 +50,7 @@ function RowCard({ food }) {
 
   return (
     <StyledRowCard>
-      <Image src="img-6.jpg" />
+      <Image src={image} />
       <Container>
         <div>
           <h1>{name}</h1>
