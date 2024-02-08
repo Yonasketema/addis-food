@@ -1,5 +1,5 @@
 import apiClient from "./api-client";
-import { getLocalStorage, localStorageKey } from "../lib/LocalSorage";
+import { getLocalStorage, localStorageKey } from "../lib/localStorage";
 
 export async function getMenu(restaurant_id) {
   const { data } = await apiClient.get(`/restaurants/${restaurant_id}/foods`);

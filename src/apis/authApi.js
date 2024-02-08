@@ -7,7 +7,7 @@ import {
   getLocalStorage,
   localStorageKey,
   setLocalStorage,
-} from "../lib/LocalSorage";
+} from "../lib/localStorage";
 
 export async function login({ email, password }) {
   const { data } = await apiClient.post("/users/login", {

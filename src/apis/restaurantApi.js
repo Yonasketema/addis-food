@@ -1,5 +1,5 @@
 import apiClient from "./api-client";
-import { getLocalStorage, localStorageKey } from "../lib/LocalSorage";
+import { getLocalStorage, localStorageKey } from "../lib/localStorage";
 
 export async function getCurrentUserRestaurant() {
   const session = getLocalStorage(localStorageKey);
