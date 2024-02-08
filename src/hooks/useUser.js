@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "../apis/authApi";
 
-export function useUser(enabled) {
+export function useUser() {
   const {
     isLoading,
     error,
@@ -10,7 +10,7 @@ export function useUser(enabled) {
     queryKey: ["user"],
     queryFn: getCurrentUser,
     refetchOnWindowFocus: false,
-    enabled,
+    retry: 1,
   });
   return { isLoading, error, user };
 }
