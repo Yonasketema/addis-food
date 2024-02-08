@@ -1,5 +1,6 @@
 import apiClient from "./api-client";
 import { getLocalStorage, localStorageKey } from "../lib/localStorage";
+import supabase, { supabaseUrl } from "./supabase";
 
 export async function getMenu(restaurant_id) {
   const { data } = await apiClient.get(`/restaurants/${restaurant_id}/foods`);
@@ -8,15 +9,34 @@ export async function getMenu(restaurant_id) {
 }
 
 export async function createMenuFood(food) {
-  return await apiClient.post("/foods", {
-    image:
-      "https://static.wixstatic.com/media/fa00aa_aa33952ed1b940d983e93cf464e942c8~mv2.jpg/v1/fill/w_640,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/fa00aa_aa33952ed1b940d983e93cf464e942c8~mv2.jpg",
+  console.log(food);
+
+  const imageName = `${Math.random()}-${food.image.name}`.replaceAll("/", "");
+
+  const imagePath = `${supabaseUrl}/storage/v1/object/public/food-image/${imageName}`;
+
+  const newFood = await apiClient.post("/foods", {
+    image: imagePath || "",
     name: food.name,
     price: food.regularPrice,
     description: food.description,
     discountPrice: food.discountPrice,
     restaurant: food.restaurant_id,
   });
+
+  const { error } = await supabase.storage
+    .from("food-image")
+    .upload(imageName, food.image);
+
+  console.log(error);
+
+  if (error) {
+    // await apiClient.delete(`/foods/${newFood.id}`);
+
+    throw new Error("the food was not created");
+  }
+
+  return newFood;
 }
 
 export async function editMenuFood(newFood, id) {
