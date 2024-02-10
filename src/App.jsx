@@ -12,6 +12,7 @@ import Create from "./pages/Create";
 import About from "./pages/About";
 import DashboardLayout from "./components/DashboardLayout";
 import AppLayout from "./components/AppLayout";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -21,15 +22,21 @@ function App() {
       <AppLayout>
         <Routes>
           <Route index element={<Home />} />
-          <Route element={<DashboardLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="settings" element={<p>settings</p>} />
-          </Route>
           <Route path="how-it-work" element={<About />} />
-          <Route path="create" element={<Create />} />
-          <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
+
+          <Route element={<ProtectedRoutes />}>
+            <Route element={<DashboardLayout />}>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="settings" element={<p>settings</p>} />
+            </Route>
+          </Route>
+
+          <Route element={<ProtectedRoutes />}>
+            <Route path="create" element={<Create />} />
+          </Route>
         </Routes>
       </AppLayout>
     </>
