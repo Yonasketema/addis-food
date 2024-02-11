@@ -2,6 +2,12 @@ import apiClient from "./api-client";
 import { getLocalStorage, localStorageKey } from "../lib/localStorage";
 import supabase, { supabaseUrl } from "./supabase";
 
+export async function getNearbyFoods(lat, lng) {
+  const { data } = await apiClient.get(`/foods/nearby?lat=${lat}&log=${lng}`);
+
+  return data;
+}
+
 export async function getMenu(restaurant_id) {
   const { data } = await apiClient.get(`/restaurants/${restaurant_id}/foods`);
 

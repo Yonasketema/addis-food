@@ -19,7 +19,7 @@ export function useGeolocation(defaultPosition = null) {
         setIsLoading(false);
       },
       (error) => {
-        setError(error.message);
+        setError(error);
         setIsLoading(false);
       }
     );
