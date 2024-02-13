@@ -17,9 +17,7 @@ const customIcon = new Icon({
 function Dashboard() {
   const { userRestaurant } = useRestaurant();
 
-  const [mapPosition, setMapPosition] = useState([
-    9.667288506425242, 39.51955439923884,
-  ]);
+  const [mapPosition, setMapPosition] = useState(null);
 
   useEffect(
     function () {
@@ -62,23 +60,25 @@ function Dashboard() {
           </div>
         </div>
 
-        <MapContainer
-          center={mapPosition}
-          zoom={13}
-          style={{
-            height: "35vh",
-            flex: 1,
-          }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-          />
+        {mapPosition && (
+          <MapContainer
+            center={mapPosition}
+            zoom={13}
+            style={{
+              height: "35vh",
+              flex: 1,
+            }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+            />
 
-          <Marker position={mapPosition} icon={customIcon}>
-            <Popup>Map</Popup>
-          </Marker>
-        </MapContainer>
+            <Marker position={mapPosition} icon={customIcon}>
+              <Popup>Map</Popup>
+            </Marker>
+          </MapContainer>
+        )}
       </Row>
       <Row>
         <Heading as="h1">Menu</Heading>
