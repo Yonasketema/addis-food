@@ -1,18 +1,18 @@
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
-import PageNotFound from "./pages/PageNotFound";
-import Login from "./pages/Login";
 import GlobalStyles from "./styles/GlobalStyles";
-
-import Signup from "./pages/Signup";
-import Create from "./pages/Create";
-
-import About from "./pages/About";
-import DashboardLayout from "./components/DashboardLayout";
-import AppLayout from "./components/AppLayout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import AppLayout from "./components/AppLayout";
+
+const About = lazy(() => import("./pages/About"));
+const Create = lazy(() => import("./pages/Create"));
+const DashboardLayout = lazy(() => import("./components/DashboardLayout"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Home = lazy(() => import("./pages/Home"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 function App() {
   return (
