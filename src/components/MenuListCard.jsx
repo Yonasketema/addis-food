@@ -15,6 +15,9 @@ const List = styled.li`
 const Img = styled.img`
   width: 100%;
   grid-row: 1 / -1;
+
+  height: 7rem;
+  object-fit: cover;
 `;
 const InfoBox = styled.div`
   display: flex;
@@ -30,7 +33,7 @@ const InfoBox = styled.div`
 function MenuListCard({ food }) {
   return (
     <List>
-      <Img src={"img-6.jpg"} alt={`${food.name} poster`} />
+      <Img src={food.image} alt={`${food.name} poster`} />
       <h3>{food.name}</h3>
       <InfoBox>
         <p>

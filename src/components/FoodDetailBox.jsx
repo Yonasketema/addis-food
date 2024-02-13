@@ -76,7 +76,7 @@ function FoodDetailBox({ food }) {
           </span>
         </PlaceName>
 
-        <Image src="img-6.jpg" alt="" />
+        <Image src={food.menu.image} alt="" />
 
         <PriceContainer
           discountPrice={food.menu.discountPrice}

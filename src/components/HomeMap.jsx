@@ -41,7 +41,7 @@ function HomeMap({ foods }) {
         url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
       />
 
-      {foods?.foods.map((food, i) => (
+      {foods?.foods?.map((food, i) => (
         <Marker
           position={[
             food.location.coordinates[1],

@@ -18,7 +18,7 @@ function FoodList({ foods, isLoading }) {
           .fill("")
           .map((a) => <FoodCardSkeleton />)}
 
-      {foods?.foods.map((food) => (
+      {foods?.foods?.map((food) => (
         <FoodCard key={food.menu._id} food={food} />
       ))}
     </StyledFoodList>
