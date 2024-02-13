@@ -52,24 +52,26 @@ function CreateLocationForm({ state, dispatch }) {
       }}
     >
       <>
-        <MapContainer
-          center={[lat, lng]}
-          zoom={13}
-          style={{
-            width: "45rem",
-            height: "40rem",
-          }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-          />
+        {lat && lat && (
+          <MapContainer
+            center={[lat, lng]}
+            zoom={13}
+            style={{
+              width: "45rem",
+              height: "40rem",
+            }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+            />
 
-          <Marker position={[lat, lng]} icon={customIcon}>
-            <Popup>Map</Popup>
-          </Marker>
-          <SelectPosition setLng={setLng} setLat={setLat} />
-        </MapContainer>
+            <Marker position={[lat, lng]} icon={customIcon}>
+              <Popup>Map</Popup>
+            </Marker>
+            <SelectPosition setLng={setLng} setLat={setLat} />
+          </MapContainer>
+        )}
       </>
 
       <Form>
