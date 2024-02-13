@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import styled, { css } from "styled-components";
 import { Icon } from "leaflet";
 import {
   MapContainer,
@@ -16,6 +17,28 @@ import Textarea from "../ui/Textarea";
 import { useGeolocation } from "../../hooks/useGeolocation";
 import { LOCATION_FORM, STEP_BACK } from "../../pages/Create";
 
+const SetLocationButton = styled.button`
+  border: none;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-size: 1.2rem;
+  padding: 0.4rem 0.8rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  bottom: 12%;
+  left: 50%;
+  z-index: 9999;
+
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+
+  &:hover {
+    background-color: yellowgreen;
+  }
+`;
+
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
   // iconUrl: require("./icons/placeholder.png"),
@@ -28,17 +51,29 @@ function CreateLocationForm({ state, dispatch }) {
     state.location_description || ""
   );
   const [city, setCity] = useState(state.city || "");
-  const [lng, setLng] = useState(state.lng || 0);
   const [lat, setLat] = useState(state.lat || 0);
+  const [lng, setLng] = useState(state.lng || 0);
+  const userCurrentLocationRef = useRef(null);
 
-  const { isLoading: isLoadingPosition, position: userPosition } =
-    useGeolocation();
+  const { position: userPosition } = useGeolocation();
+
+  function handleUserLocation() {
+    setLat(userCurrentLocationRef.current.lat);
+    setLng(userCurrentLocationRef.current.lng);
+  }
+
+  console.log(userCurrentLocationRef);
+  console.table({ lat, lng });
 
   useEffect(
     function () {
       if (userPosition) {
         setLng(userPosition.lng);
         setLat(userPosition.lat);
+        userCurrentLocationRef.current = {
+          lat: userPosition.lat,
+          lng: userPosition.lng,
+        };
       }
     },
     [userPosition]
@@ -53,24 +88,34 @@ function CreateLocationForm({ state, dispatch }) {
     >
       <>
         {lat && lat && (
-          <MapContainer
-            center={[lat, lng]}
-            zoom={13}
+          <div
             style={{
-              width: "45rem",
-              height: "40rem",
+              position: "relative",
             }}
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
-            />
+            <MapContainer
+              center={[lat, lng]}
+              zoom={13}
+              style={{
+                width: "45rem",
+                height: "100%",
+                position: "relative",
+              }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
+              />
 
-            <Marker position={[lat, lng]} icon={customIcon}>
-              <Popup>Map</Popup>
-            </Marker>
-            <SelectPosition setLng={setLng} setLat={setLat} />
-          </MapContainer>
+              <Marker position={[lat, lng]} icon={customIcon}>
+                <Popup>Map</Popup>
+              </Marker>
+              <SelectPosition setLng={setLng} setLat={setLat} />
+            </MapContainer>
+            <SetLocationButton onClick={handleUserLocation}>
+              use current Location
+            </SetLocationButton>
+          </div>
         )}
       </>
 
