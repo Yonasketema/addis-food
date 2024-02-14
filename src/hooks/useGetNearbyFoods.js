@@ -7,7 +7,7 @@ export function useGetNearbyFoods(lat, lng) {
     data: nearFoods,
     error,
   } = useQuery({
-    queryKey: ["near-foods"],
+    queryKey: ["near-foods", lat, lng],
     queryFn: () => getNearbyFoods(lat, lng),
     enabled: Boolean(lat && lng),
   });
