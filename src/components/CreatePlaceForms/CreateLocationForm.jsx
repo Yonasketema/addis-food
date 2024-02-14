@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled, { css } from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { Icon } from "leaflet";
 import {
   MapContainer,
   Marker,
   Popup,
   TileLayer,
+  useMap,
   useMapEvents,
 } from "react-leaflet";
 
@@ -30,7 +31,6 @@ const SetLocationButton = styled.button`
   bottom: 12%;
   left: 50%;
   z-index: 9999;
-
   transform: translate(-50%, -50%);
   transition: all 0.5s;
 
@@ -53,27 +53,21 @@ function CreateLocationForm({ state, dispatch }) {
   const [city, setCity] = useState(state.city || "");
   const [lat, setLat] = useState(state.lat || 0);
   const [lng, setLng] = useState(state.lng || 0);
-  const userCurrentLocationRef = useRef(null);
 
   const { position: userPosition } = useGeolocation();
 
-  function handleUserLocation() {
-    setLat(userCurrentLocationRef.current.lat);
-    setLng(userCurrentLocationRef.current.lng);
-  }
+  console.log(userPosition);
 
-  console.log(userCurrentLocationRef);
-  console.table({ lat, lng });
+  function handleUserLocation() {
+    setLat(userPosition.lat);
+    setLng(userPosition.lng);
+  }
 
   useEffect(
     function () {
       if (userPosition) {
         setLng(userPosition.lng);
         setLat(userPosition.lat);
-        userCurrentLocationRef.current = {
-          lat: userPosition.lat,
-          lng: userPosition.lng,
-        };
       }
     },
     [userPosition]
@@ -111,6 +105,9 @@ function CreateLocationForm({ state, dispatch }) {
                 <Popup>Map</Popup>
               </Marker>
               <SelectPosition setLng={setLng} setLat={setLat} />
+              {lat === userPosition.lat && (
+                <SetCenterPosition position={[lat, lng]} />
+              )}
             </MapContainer>
             <SetLocationButton onClick={handleUserLocation}>
               use current Location
@@ -143,7 +140,7 @@ function CreateLocationForm({ state, dispatch }) {
           <Textarea
             type="text"
             id="location_description"
-            placeholder="betelemdo mn teblo yemiteraw bota"
+            placeholder="location description"
             value={location_description}
             onChange={(e) => setLocationDescription(e.target.value)}
           />
@@ -186,6 +183,11 @@ function SelectPosition({ setLat, setLng }) {
       setLng(latlng.lng);
     },
   });
+}
+
+function SetCenterPosition({ position }) {
+  const map = useMap();
+  map.setView(position);
 }
 
 export default CreateLocationForm;
