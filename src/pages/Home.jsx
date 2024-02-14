@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { toast } from "react-hot-toast";
 
@@ -13,12 +14,23 @@ const Main = styled.main`
 `;
 
 function Home() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
+
   const { position, error } = useGeolocation();
 
   const { nearFoods: foods, isLoading } = useGetNearbyFoods(
-    position?.lat,
-    position?.lng
+    lat || position?.lat,
+    lng || position?.lng
   );
+
+  useEffect(() => {
+    if (position && !lat && !lng) {
+      setSearchParams(position);
+    }
+  }, [position, setSearchParams, lat, lng]);
 
   if (error?.code === 1) {
     toast.error(`${error.message} \n Please allow to access Location `);

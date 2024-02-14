@@ -1,9 +1,7 @@
 import React from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
-import { useState } from "react";
-import { useGeolocation } from "../hooks/useGeolocation";
-import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
@@ -12,22 +10,16 @@ const customIcon = new Icon({
 });
 
 function HomeMap({ foods }) {
-  const [mapPosition, setMapPosition] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { isLoading: isLoadingPosition, position: userPosition } =
-    useGeolocation();
-
-  useEffect(
-    function () {
-      if (userPosition) setMapPosition([userPosition.lat, userPosition.lng]);
-    },
-    [userPosition]
-  );
+  const lat = searchParams.get("lat");
+  const lng = searchParams.get("lng");
 
   return (
-    mapPosition && (
+    lat &&
+    lng && (
       <MapContainer
-        center={mapPosition}
+        center={[lat, lng]}
         zoom={15}
         scrollWheelZoom={true}
         style={{
@@ -54,6 +46,14 @@ function HomeMap({ foods }) {
             </Popup>
           </Marker>
         ))}
+
+        {foods?.foods.length === 0 && (
+          <Marker position={[lat, lng]} icon={customIcon}>
+            <Popup>
+              <span>You</span>
+            </Popup>
+          </Marker>
+        )}
       </MapContainer>
     )
   );
