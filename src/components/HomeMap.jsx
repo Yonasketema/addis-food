@@ -47,7 +47,7 @@ function HomeMap({ foods }) {
           </Marker>
         ))}
 
-        {foods?.foods.length === 0 && (
+        {(!foods || foods?.foods.length === 0) && (
           <Marker position={[lat, lng]} icon={customIcon}>
             <Popup>
               <span>You</span>

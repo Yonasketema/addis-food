@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import FoodCard from "./FoodCard";
 import FoodCardSkeleton from "./FoodCardSkeleton";
+import AccessDemo from "./AccessDemo";
 
 const StyledFoodList = styled.div`
   overflow: scroll;
@@ -17,7 +18,7 @@ function FoodList({ foods, isLoading }) {
         Array(3)
           .fill("z")
           .map((z, i) => <FoodCardSkeleton key={z + i} />)}
-
+      {(!foods || foods?.foods.length === 0) && <AccessDemo />}
       {foods?.foods?.map((food) => (
         <FoodCard key={food.menu._id} food={food} />
       ))}
