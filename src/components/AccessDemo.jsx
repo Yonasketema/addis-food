@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useSearchParams } from "react-router-dom";
 
-const demoLocation = { lat: 39.52696323394776, lng: 9.670370552912647 };
+const demoLocation = { lat: 9.670370552912647, lng: 39.52696323394776 };
 
 const StyledAccessDemo = styled.div`
   text-align: center;
